@@ -36,6 +36,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+
 		<!-- ✅ Logging (SLF4J + Logback) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -66,6 +67,7 @@
 
 	<build>
 		<plugins>
+			<!-- Compiler plugin (your existing one) -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -81,7 +83,20 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+
+			<!-- Spring Boot plugin (NEEDED to create fat jar) -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.2.5</version> <!-- Or whatever version you're using -->
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
-
 </project>
